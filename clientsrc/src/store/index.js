@@ -1,23 +1,24 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import router from "../router";
-import { api } from "./AxiosService"
+import { api } from "./AxiosService";
 
 Vue.use(Vuex);
 
-
-
 export default new Vuex.Store({
   state: {
-    profile: {}
+    profile: {},
+    bugs: [],
+    activeBug: {},
+    notes: [],
   },
   mutations: {
     setProfile(state, profile) {
       state.profile = profile;
-    }
+    },
   },
   actions: {
-    setBearer({ }, bearer) {
+    setBearer({}, bearer) {
       api.defaults.headers.authorization = bearer;
     },
     resetBearer() {
@@ -30,6 +31,6 @@ export default new Vuex.Store({
       } catch (error) {
         console.error(error);
       }
-    }
-  }
+    },
+  },
 });

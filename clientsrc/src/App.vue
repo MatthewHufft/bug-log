@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <navbar />
-    <router-view />
+    <main class="container-fluid">
+      <router-view />
+    </main>
   </div>
 </template>
 
@@ -27,4 +29,8 @@ export default {
 @import "./assets/_variables.scss";
 @import "bootstrap";
 @import "./assets/_overrides.scss";
+main {
+  min-height: 92vh;
+  flex-grow: 1;
+}
 </style>

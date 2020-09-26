@@ -23,7 +23,7 @@ async editBug(id, userEmail, update) {
     }
     return data;
   }
-  // TODO FIGURE OUT HOW THE HELL DELETE AND UPDATE WORKS. ALSO WHY AND FOR WHAT PURPOSE.
+  // TODO PREVENT FUTURE EDITS TO CLOSED BUGS
  async closeBug(id, userEmail) {
     let bugData = await dbContext.Bugs.findOne({ _id: id, creatorEmail: userEmail  })
     // @ts-ignore

@@ -1,12 +1,36 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <h1>Welcome to Your Vue.js App</h1>
+  <div class="home d-flex flex-column align-items-center">
+    <div class="row d-flex justify-content-center">
+      <h1>Current Bugs</h1>
+    </div>
+
+    <div class="bug-container bg-light border">
+      <div class="row">
+        <div class="col-3 border">
+          <p>Title</p>
+        </div>
+        <div class="col-3 border">
+          <p>Reported By</p>
+        </div>
+        <div class="col-3 border">
+          <p>Status</p>
+        </div>
+        <div class="col-3 border">
+          <p>Last Modified</p>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "home"
+  name: "home",
 };
 </script>
+
+<style>
+.bug-container {
+  width: 80%;
+}
+</style>
