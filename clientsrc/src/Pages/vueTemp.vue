@@ -2,7 +2,7 @@
 
 <script>
 export default {
-  name: "details",
+  name: "",
   mounted() {},
   data() {},
   computed: {},

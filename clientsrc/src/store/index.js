@@ -16,6 +16,9 @@ export default new Vuex.Store({
     setProfile(state, profile) {
       state.profile = profile;
     },
+    setBugs(state, bugs) {
+      state.bugs = bugs;
+    },
   },
   actions: {
     setBearer({}, bearer) {
@@ -28,6 +31,14 @@ export default new Vuex.Store({
       try {
         let res = await api.get("profile");
         commit("setProfile", res.data);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async getBugs({ commit }) {
+      try {
+        let res = await api.get("bugs");
+        commit("setBugs", res.data);
       } catch (error) {
         console.error(error);
       }

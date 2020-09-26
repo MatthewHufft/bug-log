@@ -1,26 +1,26 @@
 <template>
   <div class="row">
     <div class="col-3 border">
-      <p>Title</p>
+      <p>{{ bugProp.title }}</p>
     </div>
     <div class="col-3 border">
-      <p>Reported By</p>
+      <p>{{ bugProp.creatorEmail }}</p>
     </div>
     <div class="col-3 border">
-      <p>Status</p>
+      <p>{{ bugProp.closed }}</p>
     </div>
     <div class="col-3 border">
-      <p>Last Modified</p>
+      <p>{{ bugProp.updatedAt }}</p>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "bug-component",
+  name: "bug-comp",
   mounted() {},
   computed: {},
-  props: [""],
+  props: ["bugProp"],
   components: {},
   methods: {},
 };

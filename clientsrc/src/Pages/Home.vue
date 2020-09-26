@@ -4,7 +4,7 @@
       <h1>Current Bugs</h1>
     </div>
 
-    <div class="bug-container bg-light border">
+    <div class="container-fluid bug-container bg-light border">
       <div class="row">
         <div class="col-3 border">
           <p>Title</p>
@@ -19,13 +19,27 @@
           <p>Last Modified</p>
         </div>
       </div>
+      <bug-comp v-for="bug in bugs" :key="bug.id" :bugProp="bug" />
     </div>
   </div>
 </template>
 
 <script>
+import BugComp from "../components/BugComp";
 export default {
   name: "home",
+  mounted() {},
+  data() {
+    return {};
+  },
+  computed: {
+    bugs() {
+      return this.$store.state.bugs;
+    },
+  },
+  props: [""],
+  components: { BugComp },
+  methods: {},
 };
 </script>
 
