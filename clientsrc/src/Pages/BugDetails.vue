@@ -79,7 +79,7 @@ export default {
   methods: {
     addNote() {
       this.$store.dispatch("addNote", this.newNote);
-      this.newNote = { content: "" };
+      this.newNote = { content: "", bug: this.$route.params.bugId };
     },
     closeBug() {
       this.$store.dispatch("closeBug", this.newNote.bug);
