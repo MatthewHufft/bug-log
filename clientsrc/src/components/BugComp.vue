@@ -14,7 +14,7 @@
       <p class="text-success" v-if="!bugProp.closed">Open</p>
     </div>
     <div class="col-3 border">
-      <p>{{ bugProp.updatedAt }}</p>
+      <p>{{ bugProp.updatedAt | formatDate }}</p>
     </div>
   </div>
 </template>
@@ -30,5 +30,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

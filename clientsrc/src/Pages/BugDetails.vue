@@ -6,8 +6,13 @@
         <sub>{{ activeBug.creatorEmail }}</sub>
       </div>
       <div class="col-5 d-flex justify-content-end align-items-end">
-        <h4>Status: {{ activeBug.closed }}</h4>
-        <button class="btn btn-danger" @click="closeBug">Close Bug</button>
+        <div class="div" v-if="!activeBug.closed">
+          <h4>Status: <span class="text-success">Open</span></h4>
+          <button class="btn btn-danger" @click="closeBug">Close Bug</button>
+        </div>
+        <div class="div" v-if="activeBug.closed">
+          <h4>Status: <span class="text-danger">Closed</span></h4>
+        </div>
       </div>
     </div>
     <div class="row mt-5">

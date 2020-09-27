@@ -34,6 +34,9 @@ export default new Vuex.Store({
     deleteNote(state, note) {
       state.notes = state.notes.filter((n) => n.id != note);
     },
+    closeBug(state) {
+      state.activeBug.closed = "Closed";
+    },
   },
   actions: {
     setBearer({}, bearer) {
@@ -61,11 +64,6 @@ export default new Vuex.Store({
     async getActiveBug({ commit }, bugId) {
       try {
         let res = await api.get("bugs/" + bugId);
-        if (!res.data.closed) {
-          res.data.closed = "Open";
-        } else {
-          res.data.closed = "Closed";
-        }
         commit("setActiveBug", res.data);
         this.dispatch("getNotes", bugId);
       } catch (error) {
@@ -112,6 +110,7 @@ export default new Vuex.Store({
     async closeBug({ commit }, bugId) {
       try {
         await api.delete("bugs/" + bugId);
+        commit("closeBug");
       } catch (error) {
         console.error(error);
       }
