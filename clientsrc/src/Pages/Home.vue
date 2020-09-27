@@ -5,7 +5,7 @@
     </div>
 
     <div class="container-fluid bug-container bg-light border">
-      <div class="row">
+      <div class="row" name="grid-header">
         <div class="col-3 border">
           <p>Title</p>
         </div>
@@ -20,6 +20,58 @@
         </div>
       </div>
       <bug-comp v-for="bug in bugs" :key="bug.id" :bugProp="bug" />
+      <button
+        class="btn btn-info"
+        data-toggle="modal"
+        data-target="#newBugModal"
+      >
+        Report Bug
+      </button>
+      <!-- REPORT BUG MODAL FORM -->
+      <div
+        class="modal fade"
+        id="newBugModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content text-light">
+            <div class="modal-header bg-primary">
+              <h5 class="modal-title text-light" id="exampleModalLabel">
+                Report a New Bug
+              </h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form @submit.prevent="addBug">
+              <input
+                class="form-control w-75 my-2 ml-5"
+                type="text"
+                placeholder="Bug Title ... "
+                v-model="newBug.title"
+                required
+              />
+              <input
+                class="form-control w-75 my-2 ml-5"
+                type="text"
+                placeholder="Brief description of bug"
+                v-model="newBug.description"
+              />
+              <div class="modal-footer justify-content-center">
+                <button type="submit" class="btn btn-danger">Report Bug</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -30,7 +82,12 @@ export default {
   name: "home",
   mounted() {},
   data() {
-    return {};
+    return {
+      newBug: {
+        title: "",
+        description: "",
+      },
+    };
   },
   computed: {
     bugs() {
@@ -39,7 +96,12 @@ export default {
   },
   props: [""],
   components: { BugComp },
-  methods: {},
+  methods: {
+    addBug() {
+      this.$store.dispatch("addBug", this.newBug);
+      this.newBug = { title: "", description: "" };
+    },
+  },
 };
 </script>
 
