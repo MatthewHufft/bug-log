@@ -2,8 +2,16 @@
   <div class="home d-flex flex-column">
     <div class="row">
       <div class="col-5 offset-1">
-        <h1>{{ activeBug.title }}</h1>
-        <sub>{{ activeBug.creatorEmail }}</sub>
+        <h1>
+          {{ activeBug.title }}
+          <span
+            v-if="!activeBug.closed"
+            data-toggle="modal"
+            data-target="#editBugModal"
+            ><i class="fa fa-pencil text-warning" aria-hidden="true"></i
+          ></span>
+        </h1>
+        <h5>{{ activeBug.creatorEmail }}</h5>
       </div>
       <div class="col-5 d-flex justify-content-end align-items-end">
         <div class="div" v-if="!activeBug.closed">
@@ -12,6 +20,53 @@
         </div>
         <div class="div" v-if="activeBug.closed">
           <h4>Status: <span class="text-danger">Closed</span></h4>
+        </div>
+      </div>
+      <!-- SECTION Edit Bug Modal -->
+      <div
+        class="modal fade"
+        id="editBugModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content text-light">
+            <div class="modal-header bg-primary">
+              <h5 class="modal-title text-light" id="exampleModalLabel">
+                Edit Bug Content
+              </h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form @submit.prevent="editBug">
+              <input
+                class="form-control w-75 my-2 ml-5"
+                type="text"
+                placeholder="Bug Title ... "
+                v-model="bugData.title"
+                required
+              />
+              <input
+                class="form-control w-75 my-2 ml-5"
+                type="text"
+                placeholder="Bug description"
+                v-model="bugData.description"
+              />
+              <div class="modal-footer justify-content-center">
+                <button type="submit" class="btn btn-danger">
+                  Save
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
@@ -36,7 +91,7 @@
           </div>
         </div>
         <note-comp v-for="note in notes" :key="note.id" :noteProp="note" />
-        <div class="row">
+        <div v-if="!this.activeBug.closed" class="row">
           <div class="col-12">
             <form class="form-inline" @submit.prevent="addNote">
               <button class="btn btn-success my-1" type="submit">
@@ -69,6 +124,11 @@ export default {
         content: "",
         bug: this.$route.params.bugId,
       },
+      bugData: {
+        title: "",
+        description: "",
+        id: this.$route.params.bugId,
+      },
     };
   },
   computed: {
@@ -88,6 +148,9 @@ export default {
     },
     closeBug() {
       this.$store.dispatch("closeBug", this.newNote.bug);
+    },
+    editBug() {
+      this.$store.dispatch("editBug", this.bugData);
     },
   },
 };

@@ -93,6 +93,9 @@ export default {
     bugs() {
       return this.$store.state.bugs;
     },
+    activeBug() {
+      return this.$store.state.activeBug;
+    },
   },
   props: [""],
   components: { BugComp },

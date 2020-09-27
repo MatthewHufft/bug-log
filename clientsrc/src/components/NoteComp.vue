@@ -7,7 +7,13 @@
       <p>{{ noteProp.content }}</p>
     </div>
     <div class="col-4 border">
-      <button class="btn btn-danger my-1" @click="deleteNote">Delete</button>
+      <button
+        v-if="!this.activeBug.closed"
+        class="btn btn-danger my-1"
+        @click="deleteNote"
+      >
+        Delete
+      </button>
     </div>
   </div>
 </template>
@@ -19,7 +25,11 @@ export default {
   data() {
     return {};
   },
-  computed: {},
+  computed: {
+    activeBug() {
+      return this.$store.state.activeBug;
+    },
+  },
   props: ["noteProp"],
   components: {},
   methods: {
@@ -30,5 +40,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

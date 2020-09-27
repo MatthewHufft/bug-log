@@ -115,5 +115,17 @@ export default new Vuex.Store({
         console.error(error);
       }
     },
+    async editBug({ commit }, bugData) {
+      try {
+        let res = await api.put("bugs/" + bugData.id, bugData);
+        commit("setActiveBug", res.data);
+        // @ts-ignore
+        $("#editBugModal").hide();
+        // @ts-ignore
+        $(".modal-backdrop").hide();
+      } catch (error) {
+        console.error(error);
+      }
+    },
   },
 });
