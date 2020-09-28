@@ -32,7 +32,7 @@
       </div>
       <div class="row ">
         <button
-          class="btn btn-info m-3 "
+          class="btn m-3 report-btn text-light"
           data-toggle="modal"
           data-target="#newBugModal"
         >
@@ -153,6 +153,15 @@ export default {
   background-color: #bdbdbd28;
   border-radius: 30px;
   width: 70px;
+}
+.report-btn {
+  box-shadow: 3px 3px 10px #bdbdbd, -6px -6px 13px #ffffff;
+  background-color: #3399f3;
+  border-radius: 30px;
+}
+.report-btn:active {
+  box-shadow: inset 6px 6px 13px #2776bb, inset -6px -6px 13px #3fbcff;
+  background: #3399f3;
 }
 .bg-trans {
   background-color: rgba(0, 0, 0, 0);
