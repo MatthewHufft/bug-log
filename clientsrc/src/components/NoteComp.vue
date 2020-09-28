@@ -1,12 +1,12 @@
 <template>
   <div class="row " name="grid-header">
-    <div class="col-4 border">
+    <div class="col-4">
       <p>{{ noteProp.creatorEmail }}</p>
     </div>
-    <div class="col-4 border">
+    <div class="col-4">
       <p>{{ noteProp.content }}</p>
     </div>
-    <div class="col-4 border">
+    <div class="col-4">
       <button
         v-if="!this.activeBug.closed"
         class="btn btn-danger my-1"

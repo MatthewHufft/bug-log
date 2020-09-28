@@ -33,6 +33,6 @@ export default {
 main {
   min-height: 93vh;
 
-  background-color: rgb(238, 235, 235);
+  background-color: #f5f5f5;
 }
 </style>

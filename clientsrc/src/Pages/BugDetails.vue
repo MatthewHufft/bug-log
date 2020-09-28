@@ -73,29 +73,32 @@
         </div>
       </div>
     </div>
-    <div class="row mt-5">
-      <div class="col-10 offset-1 border bug-desc bg-white">
+    <div class="row mt-5 d-flex">
+      <div class="col-1 mr-3">
+        <img src="../assets/ant.png" alt="" />
+      </div>
+      <div class="col-10  bug-desc text-dark p-3">
         <h3>Description of issue:</h3>
         <p>{{ activeBug.description }}</p>
       </div>
     </div>
     <!-- NOTES SECTION  -->
     <div class="row mt-5">
-      <div class="container-fluid note-container bg-white border">
+      <div class="container-fluid note-container ">
         <div class="row" name="grid-header">
-          <div class="col-4 border">
-            <p>Name</p>
+          <div class="col-4 border-bottom p-3">
+            <p class="font-weight-bold">Name</p>
           </div>
-          <div class="col-4 border">
-            <p>Action Taken</p>
+          <div class="col-4 border-bottom p-3">
+            <p class="font-weight-bold">Action Taken</p>
           </div>
-          <div class="col-4 border">
-            <p>Delete</p>
+          <div class="col-4 border-bottom p-3">
+            <p class="font-weight-bold">Delete</p>
           </div>
         </div>
         <note-comp v-for="note in notes" :key="note.id" :noteProp="note" />
         <div v-if="!this.activeBug.closed" class="row">
-          <div class="col-12">
+          <div class="col-12 p-3">
             <form class="form-inline" @submit.prevent="addNote">
               <button class="btn btn-success my-1" type="submit">
                 Add Note
@@ -162,10 +165,18 @@ export default {
 <style>
 .bug-desc {
   min-height: 20vh;
+  background-color: #f5f5f5;
+  box-shadow: 12px 12px 16px 0 rgba(0, 0, 0, 0.25),
+    -8px -8px 20px 0 rgba(231, 231, 231, 0.486);
+  border-radius: 25px;
 }
 
 .note-container {
   width: 83%;
+  background-color: #f5f5f5;
+  box-shadow: 12px 12px 16px 0 rgba(0, 0, 0, 0.25),
+    -8px -8px 20px 0 rgba(231, 231, 231, 0.486);
+  border-radius: 25px;
 }
 .text-small {
   font-size: 0.6em;

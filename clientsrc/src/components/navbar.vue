@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-info">
     <router-link class="navbar-brand" :to="{ name: 'Home' }"
       >Bug Tracker</router-link
     >
