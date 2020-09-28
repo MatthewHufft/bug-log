@@ -1,5 +1,5 @@
 <template>
-  <div class="row" name="grid-header">
+  <div class="row " name="grid-header">
     <div class="col-4 border">
       <p>{{ noteProp.creatorEmail }}</p>
     </div>

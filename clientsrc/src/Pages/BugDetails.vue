@@ -8,7 +8,10 @@
             v-if="!activeBug.closed"
             data-toggle="modal"
             data-target="#editBugModal"
-            ><i class="fa fa-pencil text-warning" aria-hidden="true"></i
+            ><i
+              class="fa fa-pencil text-warning drop-shadow text-small"
+              aria-hidden="true"
+            ></i
           ></span>
         </h1>
         <h5>{{ activeBug.creatorEmail }}</h5>
@@ -71,14 +74,14 @@
       </div>
     </div>
     <div class="row mt-5">
-      <div class="col-10 offset-1 border bug-desc">
+      <div class="col-10 offset-1 border bug-desc bg-white">
         <h3>Description of issue:</h3>
         <p>{{ activeBug.description }}</p>
       </div>
     </div>
     <!-- NOTES SECTION  -->
     <div class="row mt-5">
-      <div class="container-fluid note-container bg-light border">
+      <div class="container-fluid note-container bg-white border">
         <div class="row" name="grid-header">
           <div class="col-4 border">
             <p>Name</p>
@@ -163,5 +166,16 @@ export default {
 
 .note-container {
   width: 83%;
+}
+.text-small {
+  font-size: 0.6em;
+}
+
+.drop-shadow {
+  transition: 150ms;
+}
+.drop-shadow:hover {
+  transform: scale(1.1);
+  cursor: pointer;
 }
 </style>

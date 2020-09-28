@@ -31,7 +31,8 @@ export default {
 @import "bootstrap";
 @import "./assets/_overrides.scss";
 main {
-  min-height: 92vh;
-  flex-grow: 1;
+  min-height: 93vh;
+
+  background-color: rgb(238, 235, 235);
 }
 </style>

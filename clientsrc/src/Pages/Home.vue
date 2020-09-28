@@ -4,7 +4,7 @@
       <h1>Current Bugs</h1>
     </div>
 
-    <div class="container-fluid bug-container bg-light border">
+    <div class="container-fluid bug-container bg-white border rounded">
       <div class="row" name="grid-header">
         <div class="col-3 border">
           <p>Title</p>
@@ -34,16 +34,15 @@
       <div v-if="this.sortClosed">
         <bug-comp v-for="bug in closedBugs" :key="bug.id" :bugProp="bug" />
       </div>
-      <!-- <div>
-        <bug-comp v-for="bug in bugs" :key="bug.id" :bugProp="bug" />
-      </div> -->
-      <button
-        class="btn btn-info"
-        data-toggle="modal"
-        data-target="#newBugModal"
-      >
-        Report Bug
-      </button>
+      <div class="row ">
+        <button
+          class="btn btn-info m-2 "
+          data-toggle="modal"
+          data-target="#newBugModal"
+        >
+          Report Bug
+        </button>
+      </div>
       <!-- REPORT BUG MODAL FORM -->
       <div
         class="modal fade"
@@ -149,5 +148,9 @@ export default {
 <style>
 .bug-container {
   width: 80%;
+}
+
+.bg-trans {
+  background-color: rgba(0, 0, 0, 0);
 }
 </style>
