@@ -12,14 +12,31 @@
         <div class="col-3 border">
           <p>Reported By</p>
         </div>
-        <div class="col-3 border">
-          <p>Status</p>
+        <div class="col-3 p-2 border d-flex justify-content-around">
+          <p>Status:</p>
+          <button class="btn btn-sm btn-info" @click="showAll">
+            All
+          </button>
+          <button class="btn btn-sm btn-success" @click="showOpenBugs">
+            Open
+          </button>
+          <button class="btn btn-sm btn-danger" @click="showClosedBugs">
+            Closed
+          </button>
         </div>
         <div class="col-3 border">
           <p>Last Modified</p>
         </div>
       </div>
-      <bug-comp v-for="bug in bugs" :key="bug.id" :bugProp="bug" />
+      <div v-if="this.sortOpen">
+        <bug-comp v-for="bug in openBugs" :key="bug.id" :bugProp="bug" />
+      </div>
+      <div v-if="this.sortClosed">
+        <bug-comp v-for="bug in closedBugs" :key="bug.id" :bugProp="bug" />
+      </div>
+      <!-- <div>
+        <bug-comp v-for="bug in bugs" :key="bug.id" :bugProp="bug" />
+      </div> -->
       <button
         class="btn btn-info"
         data-toggle="modal"
@@ -87,6 +104,9 @@ export default {
         title: "",
         description: "",
       },
+      sortOpen: false,
+      sortClosed: false,
+      sortAll: true,
     };
   },
   computed: {
@@ -96,6 +116,12 @@ export default {
     activeBug() {
       return this.$store.state.activeBug;
     },
+    openBugs() {
+      return this.$store.state.bugs.filter((b) => !b.closed);
+    },
+    closedBugs() {
+      return this.$store.state.bugs.filter((b) => b.closed);
+    },
   },
   props: [""],
   components: { BugComp },
@@ -103,6 +129,18 @@ export default {
     addBug() {
       this.$store.dispatch("addBug", this.newBug);
       this.newBug = { title: "", description: "" };
+    },
+    showOpenBugs() {
+      this.sortOpen = true;
+      this.sortClosed = false;
+    },
+    showClosedBugs() {
+      this.sortClosed = true;
+      this.sortOpen = false;
+    },
+    showAll() {
+      this.sortClosed = true;
+      this.sortOpen = true;
     },
   },
 };

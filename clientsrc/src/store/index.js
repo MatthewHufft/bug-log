@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import router from "../router";
+import ns from "../services/NotificationService.js";
 import { api } from "./AxiosService";
 
 Vue.use(Vuex);
@@ -91,9 +92,7 @@ export default new Vuex.Store({
     },
     async addNote({ commit, state }, newNote) {
       try {
-        console.log("hitting store");
         let res = await api.post("notes", newNote);
-        console.log("hitting serve" + res.data);
         commit("addNote", [...state.notes, res.data]);
       } catch (error) {
         console.error(error);
@@ -101,16 +100,32 @@ export default new Vuex.Store({
     },
     async deleteNote({ commit }, noteId) {
       try {
-        await api.delete("notes/" + noteId);
-        commit("deleteNote", noteId);
+        if (
+          await ns.confirmAction(
+            "Are you sure you want to delete this note?",
+            "You will not be able to recover it"
+          )
+        ) {
+          await api.delete("notes/" + noteId);
+          commit("deleteNote", noteId);
+          ns.success("Note deleted");
+        }
       } catch (error) {
         console.error(error);
       }
     },
     async closeBug({ commit }, bugId) {
       try {
-        await api.delete("bugs/" + bugId);
-        commit("closeBug");
+        if (
+          await ns.confirmAction(
+            "Are you sure you want to close this bug?",
+            "You will not be able to undo this action."
+          )
+        ) {
+          await api.delete("bugs/" + bugId);
+          commit("closeBug");
+          ns.success("Bug closed successfully");
+        }
       } catch (error) {
         console.error(error);
       }
